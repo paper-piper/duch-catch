@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duck Catch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="game-wrapper">
+
+    <div id="start-screen">
+      <h1>Duck Catch</h1>
+      <p>Help the duck catch the falling bread!</p>
+      <ul>
+        <li>← → Arrow keys to move</li>
+        <li>Catch 10 breads to win</li>
+        <li>Don't let bread hit the ground</li>
+        <li>You have 60 seconds!</li>
+      </ul>
+      <button id="start-btn">Start Game</button>
+    </div>
+
+    <canvas id="gameCanvas" width="480" height="270"></canvas>
+
+    <div id="game-over-screen" class="hidden">
+      <h1>Game Over</h1>
+      <p id="end-message"></p>
+      <p id="final-score"></p>
+      <button id="restart-btn">Play Again</button>
+    </div>
+
+  </div>
+
+  <script src="game.js" defer></script>
+</body>
+</html>

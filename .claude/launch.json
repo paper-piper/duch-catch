@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "duck-game",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["/Users/yoyo/Documents/duck-game/serve.py"],
+      "port": 8742,
+      "autoPort": false
+    }
+  ]
+}
