@@ -10,9 +10,8 @@ function onKeyUp(e) {
   if (e.key === 'ArrowRight') { e.preventDefault(); gameState.keys.right = false; }
 }
 
-function init() {
+// called explicitly from main.js — do not auto-invoke
+function setupInput() {
   document.addEventListener('keydown', onKeyDown);
   document.addEventListener('keyup',   onKeyUp);
 }
-
-init();

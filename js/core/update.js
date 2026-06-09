@@ -1,24 +1,21 @@
 'use strict';
 
-// ─── Timer ────────────────────────────────────────────────────────────────────
-function tickTimer(gs, dt) {
-  gs.timeLeft -= dt;
-  if (gs.timeLeft <= 0) {
-    gs.timeLeft = 0;
+function tickTimer(dt) {
+  gameState.timeLeft -= dt;
+  if (gameState.timeLeft <= 0) {
+    gameState.timeLeft = 0;
     endGame('time');
-    return true;   // signal: game ended, stop this frame
+    return true;
   }
   return false;
 }
 
-// ─── Main update (called every frame) ────────────────────────────────────────
 function update(dt) {
-  const gs   = gameState;
-  const diff = difficulty(gs.catches);
+  const diff = difficulty(gameState.catches);
 
-  if (tickTimer(gs, dt))           return;
-  moveDuck(gs, dt, diff);
-  animateDuck(gs, dt);
-  trySpawnBread(gs, dt, diff);
-  tickBreads(gs, dt);
+  if (tickTimer(dt))       return;
+  moveDuck(dt, diff);
+  animateDuck(dt);
+  trySpawnBread(dt, diff);
+  tickBreads(dt);
 }

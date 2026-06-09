@@ -1,38 +1,33 @@
 'use strict';
 
-// ─── Duck movement ────────────────────────────────────────────────────────────
-function moveDuck(gs, dt, diff) {
-  const duck = gs.duck;
-  if (gs.keys.left) {
-    duck.x -= diff.duckSpeed * dt;
-    duck.facingLeft = true;
+function moveDuck(dt, diff) {
+  if (gameState.keys.left) {
+    gameState.duck.x -= diff.duckSpeed * dt;
+    gameState.duck.facingLeft = true;
   }
-  if (gs.keys.right) {
-    duck.x += diff.duckSpeed * dt;
-    duck.facingLeft = false;
+  if (gameState.keys.right) {
+    gameState.duck.x += diff.duckSpeed * dt;
+    gameState.duck.facingLeft = false;
   }
-  duck.x = Math.max(DUCK_SPRITE_W / 2, Math.min(W - DUCK_SPRITE_W / 2, duck.x));
+  gameState.duck.x = Math.max(DuckConfig.SPRITE_W / 2, Math.min(CanvasConfig.W - DuckConfig.SPRITE_W / 2, gameState.duck.x));
 }
 
-// ─── Duck animation state ─────────────────────────────────────────────────────
-function animateDuck(gs, dt) {
-  const duck    = gs.duck;
-  const moving  = gs.keys.left || gs.keys.right;
-  const nearby  = gs.breads.some(b => {
-    const dx = b.x - duck.x, dy = b.y - duck.y;
-    return Math.sqrt(dx * dx + dy * dy) < DUCK_EAT_PROXIMITY;
+function animateDuck(dt) {
+  const moving = gameState.keys.left || gameState.keys.right;
+  const nearby = gameState.breads.some(b => {
+    const dx = b.x - gameState.duck.x, dy = b.y - gameState.duck.y;
+    return Math.sqrt(dx * dx + dy * dy) < DuckConfig.EAT_PROXIMITY;
   });
 
-  if (nearby)       duck.state = 'eat';
-  else if (moving)  duck.state = 'walk';
-  else              duck.state = 'idle';
+  if (nearby)      gameState.duck.state = 'eat';
+  else if (moving) gameState.duck.state = 'walk';
+  else             gameState.duck.state = 'idle';
 
-  // Advance walk-cycle frame only while moving
   if (moving) {
-    duck.frameTimer += dt;
-    if (duck.frameTimer >= 1 / WALK_FPS) {
-      duck.frameTimer -= 1 / WALK_FPS;
-      duck.frame = (duck.frame + 1) % WALK_FRAMES;
+    gameState.duck.frameTimer += dt;
+    if (gameState.duck.frameTimer >= 1 / AnimationConfig.WALK_FPS) {
+      gameState.duck.frameTimer -= 1 / AnimationConfig.WALK_FPS;
+      gameState.duck.frame = (gameState.duck.frame + 1) % AnimationConfig.WALK_FRAMES;
     }
   }
 }

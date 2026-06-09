@@ -1,51 +1,48 @@
 'use strict';
 
-// ─── Spawn ────────────────────────────────────────────────────────────────────
 function spawnBread(speed) {
   gameState.breads.push({
-    x:        BREAD_SPRITE_W / 2 + Math.random() * (W - BREAD_SPRITE_W),
-    y:        -BREAD_SPRITE_H / 2,
+    x:        BreadConfig.SPRITE_W / 2 + Math.random() * (CanvasConfig.W - BreadConfig.SPRITE_W),
+    y:        -BreadConfig.SPRITE_H / 2,
     rotation: 0,
     speed,
   });
 }
 
-function trySpawnBread(gs, dt, diff) {
-  gs.spawnTimer -= dt;
-  if (gs.spawnTimer <= 0 && gs.breads.length < diff.maxBreads) {
+function trySpawnBread(dt, diff) {
+  gameState.spawnTimer -= dt;
+  if (gameState.spawnTimer <= 0 && gameState.breads.length < diff.maxBreads) {
     spawnBread(diff.breadSpeed);
-    gs.spawnTimer = diff.spawnDelay;
+    gameState.spawnTimer = diff.spawnDelay;
   }
 }
 
-// ─── Physics & collision ──────────────────────────────────────────────────────
-function tickBreads(gs, dt) {
-  const duck      = gs.duck;
-  const duckLeft  = duck.x - DUCK_W / 2;
-  const duckRight = duck.x + DUCK_W / 2;
-  const duckTop   = duck.y - DUCK_H;
+function tickBreads(dt) {
+  const duckLeft  = gameState.duck.x - DuckConfig.W / 2;
+  const duckRight = gameState.duck.x + DuckConfig.W / 2;
+  const duckTop   = gameState.duck.y - DuckConfig.H;
 
   const surviving = [];
-  for (const b of gs.breads) {
+  for (const b of gameState.breads) {
     b.y        += b.speed * dt;
-    b.rotation += BREAD_ROT_SPEED;
+    b.rotation += BreadConfig.ROT_SPEED;
 
-    const breadBottom = b.y + BREAD_H / 2;
-    const breadLeft   = b.x - BREAD_W / 2;
-    const breadRight  = b.x + BREAD_W / 2;
+    const breadBottom = b.y + BreadConfig.H / 2;
+    const breadLeft   = b.x - BreadConfig.W / 2;
+    const breadRight  = b.x + BreadConfig.W / 2;
 
     const caught = breadRight > duckLeft  && breadLeft < duckRight &&
-                   breadBottom >= duckTop && breadBottom <= duck.y + 4;
+                   breadBottom >= duckTop && breadBottom <= gameState.duck.y + 4;
 
     if (caught) {
-      gs.score++;
-      gs.catches++;
-      if (gs.catches >= WIN_CATCHES) { endGame('win'); return; }
-    } else if (b.y - BREAD_H / 2 > H) {
-      gs.score--;                 // missed — fell off screen
+      gameState.score++;
+      gameState.catches++;
+      if (gameState.catches >= GameConfig.WIN_CATCHES) { endGame('win'); return; }
+    } else if (b.y - BreadConfig.H / 2 > CanvasConfig.H) {
+      gameState.score--;
     } else {
-      surviving.push(b);          // still in play
+      surviving.push(b);
     }
   }
-  gs.breads = surviving;
+  gameState.breads = surviving;
 }

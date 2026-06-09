@@ -1,13 +1,24 @@
 'use strict';
 
-const canvas       = document.getElementById('gameCanvas');
-const ctx          = canvas.getContext('2d');
-ctx.imageSmoothingEnabled = false;
+// Declared globally so all scripts can reference them.
+// Assigned in setupDOM() — do not use before main() runs.
+let canvas, ctx;
+let startScreen, gameOverScreen;
+let startBtn, restartBtn;
+let endMessageEl, finalScoreEl;
+let gameWrapper;
 
-const startScreen    = document.getElementById('start-screen');
-const gameOverScreen = document.getElementById('game-over-screen');
-const startBtn       = document.getElementById('start-btn');
-const restartBtn     = document.getElementById('restart-btn');
-const endMessageEl   = document.getElementById('end-message');
-const finalScoreEl   = document.getElementById('final-score');
-const gameWrapper    = document.getElementById('game-wrapper');
+// called explicitly from main.js — do not auto-invoke
+function setupDOM() {
+  canvas = document.getElementById('gameCanvas');
+  ctx    = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+
+  startScreen    = document.getElementById('start-screen');
+  gameOverScreen = document.getElementById('game-over-screen');
+  startBtn       = document.getElementById('start-btn');
+  restartBtn     = document.getElementById('restart-btn');
+  endMessageEl   = document.getElementById('end-message');
+  finalScoreEl   = document.getElementById('final-score');
+  gameWrapper    = document.getElementById('game-wrapper');
+}

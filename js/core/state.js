@@ -5,13 +5,13 @@ let gameState = {};
 function buildState() {
   return {
     running:    false,
-    timeLeft:   GAME_DURATION,
+    timeLeft:   GameConfig.DURATION,
     score:      0,
     catches:    0,
 
     duck: {
-      x:          W / 2,
-      y:          DUCK_Y,
+      x:          CanvasConfig.W / 2,
+      y:          DuckConfig.Y,
       frame:      0,
       frameTimer: 0,
       state:      'idle',
@@ -30,8 +30,8 @@ function buildState() {
 
 function difficulty(catches) {
   return {
-    duckSpeed:  DUCK_SPEED + catches * DUCK_SPEED_INC,
-    breadSpeed: Math.min(BREAD_BASE_SPEED + catches * BREAD_SPEED_INC, BREAD_SPEED_CAP),
+    duckSpeed:  DuckConfig.SPEED + catches * DuckConfig.SPEED_INC,
+    breadSpeed: Math.min(BreadConfig.BASE_SPEED + catches * BreadConfig.SPEED_INC, BreadConfig.SPEED_CAP),
     spawnDelay: Math.max(0.5, 1.5 - catches * 0.1),
     maxBreads:  1 + Math.floor(catches / 4),
   };
