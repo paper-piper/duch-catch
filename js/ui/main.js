@@ -29,10 +29,14 @@ function resizeGame() {
   gameWrapper.style.transform = `scale(${scale})`;
 }
 
-window.addEventListener('resize', resizeGame);
-resizeGame();
+function init() {
+  window.addEventListener('resize', resizeGame);
+  resizeGame();
 
-loadAssets(ASSETS);
+  loadAssets(ASSETS);
 
-startBtn.addEventListener('click', startGame);
-restartBtn.addEventListener('click', startGame);
+  startBtn.addEventListener('click', startGame);
+  restartBtn.addEventListener('click', startGame);
+}
+
+init();
