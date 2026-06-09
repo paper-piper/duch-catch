@@ -1,48 +1,3 @@
-@font-face {
-  font-family: 'PixelFont';
-  src: url('assets/ByteBounce.ttf') format('truetype');
-}
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: #1a1a2e;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  font-family: 'PixelFont', monospace;
-  overflow: hidden;
-}
-
-#game-wrapper {
-  position: relative;
-  width: 480px;
-  height: 270px;
-  transform-origin: center center;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-}
-
-#gameCanvas {
-  display: block;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  -webkit-font-smoothing: none;
-  font-smooth: never;
-}
-
-#game-wrapper img {
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-}
-
-/* Overlay screens sit on top of the canvas */
 #start-screen,
 #game-over-screen {
   position: absolute;
@@ -101,14 +56,5 @@ button {
   transition: background 0.1s;
 }
 
-button:hover {
-  background: #ffd700;
-}
-
-button:active {
-  background: #c8a000;
-}
-
-.hidden {
-  display: none !important;
-}
+button:hover  { background: #ffd700; }
+button:active { background: #c8a000; }

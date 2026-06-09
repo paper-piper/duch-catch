@@ -1,0 +1,21 @@
+#game-wrapper {
+  position: relative;
+  width: 480px;
+  height: 270px;
+  transform-origin: center center;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+#gameCanvas {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+#game-wrapper img {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}

@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'PixelFont';
+  src: url('../assets/ByteBounce.ttf') format('truetype');
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #1a1a2e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'PixelFont', monospace;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
