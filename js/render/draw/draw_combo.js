@@ -9,25 +9,32 @@ function drawCombo(dt) {
         return; // No need to show "Combo x1"
     }
 
-    canvas2d.font = '16px Arial';
     let comboStr = 'Combo x' + gameState.combo + '!';
     if (gameState.combo === 0) {
         comboStr = 'Combo broken!';
     }
     const textWidth = canvas2d.measureText(comboStr).width;
-    const xCenter = (CanvasConfig.W - textWidth) / 2;
     
     if (gameState.combo_changed) {
         gameState.combo_animation_timer = AnimationConfig.COMBO_DURATION; // Show combo for a short duration
         gameState.combo_changed = false;
+        gameState.combo_x = Math.floor(Math.random() * (CanvasConfig.W - textWidth)) + textWidth / 2;
+        gameState.combo_y = Math.floor(Math.random() * 100) + 50;
+        gameState.combo_rotation = (Math.random() - 0.5) * 30;
     }
     else {
         gameState.combo_animation_timer -= dt;
     }
     
     if (gameState.combo_animation_timer > 0) {
-        canvas2d.fillStyle = 'rgba(255, 0, 0, ' + (gameState.combo_animation_timer * 2) + ')';
-        canvas2d.fillText(comboStr, xCenter, 50);
+
+        canvas2d.save();
+        canvas2d.translate(gameState.combo_x, gameState.combo_y);  
+        canvas2d.rotate(gameState.combo_rotation * Math.PI / 180);    
+        canvas2d.font = 'bold 16px Arial';
+          canvas2d.fillStyle = '#f00';
+        canvas2d.fillText(comboStr, 0, 0); // draw at origin
+        canvas2d.restore();
     }
     
 }
