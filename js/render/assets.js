@@ -2,15 +2,14 @@
 
 const ASSETS = {
   background: 'assets/background.png',
-  duckIdle:   'assets/duck/duck_looking_up.png',
-  duckEat:    'assets/duck/duck_opening_mouth.png',
-  duckWalk0:  'assets/duck/duck_running_right/frame_000.png',
-  duckWalk1:  'assets/duck/duck_running_right/frame_001.png',
-  duckWalk2:  'assets/duck/duck_running_right/frame_002.png',
-  duckWalk3:  'assets/duck/duck_running_right/frame_003.png',
-  breadFall:  'assets/bread_fall.png',
-  breadIcon:  'assets/icons/bread_14x14.png',
-  timerIcon:  'assets/icons/clock-icon.png',
+  duckIdle:   'assets/duck/idle.png',
+  duckEat:    'assets/duck/eat.png',
+  duckWalk0:  'assets/duck/walk/frame_000.png',
+  duckWalk1:  'assets/duck/walk/frame_001.png',
+  duckWalk2:  'assets/duck/walk/frame_002.png',
+  duckWalk3:  'assets/duck/walk/frame_003.png',
+  breadIcon:  'assets/icons/bread.png',
+  timerIcon:  'assets/icons/clock.png',
 };
 
 const images = {};

@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'PixelFont';
-  src: url('../assets/ByteBounce.ttf') format('truetype');
+  src: url('../assets/fonts/ByteBounce.ttf') format('truetype');
 }
 
 *, *::before, *::after {
