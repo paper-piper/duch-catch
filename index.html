@@ -33,6 +33,22 @@
 
   </div>
 
-  <script src="game.js" defer></script>
+  <!-- ui -->
+  <script src="js/ui/dom.js"          defer></script>
+  <script src="js/ui/input.js"        defer></script>
+  <!-- core -->
+  <script src="js/core/constants.js"  defer></script>
+  <script src="js/core/state.js"      defer></script>
+  <!-- render -->
+  <script src="js/render/assets.js"   defer></script>
+  <script src="js/render/draw.js"     defer></script>
+  <!-- entities -->
+  <script src="js/entities/duck.js"   defer></script>
+  <script src="js/entities/bread.js"  defer></script>
+  <!-- core (loop & update last — depend on everything above) -->
+  <script src="js/core/loop.js"       defer></script>
+  <script src="js/core/update.js"     defer></script>
+  <!-- ui (entry point) -->
+  <script src="js/ui/main.js"         defer></script>
 </body>
 </html>
