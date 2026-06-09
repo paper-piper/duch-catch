@@ -16,16 +16,20 @@ function trySpawnBread(dt, diff) {
     gameState.spawnTimer = diff.spawnDelay;
   }
 }
-
 function tickBreads(dt) {
+    for (const b of gameState.breads) {
+      b.y        += b.speed * dt;
+      b.rotation += BreadConfig.ROT_SPEED;
+    }
+}
+
+function HandleBreadsCollisions(dt) {
   const duckLeft  = gameState.duck.x - DuckConfig.W / 2;
   const duckRight = gameState.duck.x + DuckConfig.W / 2;
   const duckTop   = gameState.duck.y - DuckConfig.H;
 
   const surviving = [];
   for (const b of gameState.breads) {
-    b.y        += b.speed * dt;
-    b.rotation += BreadConfig.ROT_SPEED;
 
     const breadBottom = b.y + BreadConfig.H / 2;
     const breadLeft   = b.x - BreadConfig.W / 2;
@@ -37,9 +41,19 @@ function tickBreads(dt) {
     if (caught) {
       gameState.score++;
       gameState.catches++;
-      if (gameState.catches >= GameConfig.WIN_CATCHES) { endGame('win'); return; }
-    } else if (b.y - BreadConfig.H / 2 > CanvasConfig.H) {
+      gameState.combo++;
+      gameState.combo_changed = true;
+      if (gameState.catches >= GameConfig.WIN_CATCHES) { 
+        endGame('win'); return; 
+      }
+    } 
+    
+    else if (b.y - BreadConfig.H / 2 > CanvasConfig.H) {
       gameState.score--;
+      if (gameState.combo > 0) {
+        gameState.combo_changed = true;
+        gameState.combo = 0;
+      }
     } else {
       surviving.push(b);
     }

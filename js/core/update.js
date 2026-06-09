@@ -18,4 +18,5 @@ function update(dt) {
   animateDuck(dt);
   trySpawnBread(dt, diff);
   tickBreads(dt);
+  HandleBreadsCollisions(dt);
 }

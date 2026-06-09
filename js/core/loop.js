@@ -14,9 +14,8 @@ function loop(timestamp) {
   if (lastTime === null) lastTime = timestamp;
   const dt = Math.min((timestamp - lastTime) / 1000, 0.05);
   lastTime = timestamp;
-
   update(dt);
-  draw();
+  draw(dt);
 
   rafId = requestAnimationFrame(loop);
 }

@@ -2,7 +2,7 @@
 
 // Declared globally so all scripts can reference them.
 // Assigned in setupDOM() — do not use before main() runs.
-let canvas, ctx;
+let canvas, canvas2d;
 let startScreen, gameOverScreen;
 let startBtn, restartBtn;
 let endMessageEl, finalScoreEl;
@@ -11,8 +11,8 @@ let gameWrapper;
 // called explicitly from main.js — do not auto-invoke
 function setupDOM() {
   canvas = document.getElementById('gameCanvas');
-  ctx    = canvas.getContext('2d');
-  ctx.imageSmoothingEnabled = false;
+  canvas2d    = canvas.getContext('2d');
+  canvas2d.imageSmoothingEnabled = false;
 
   startScreen    = document.getElementById('start-screen');
   gameOverScreen = document.getElementById('game-over-screen');

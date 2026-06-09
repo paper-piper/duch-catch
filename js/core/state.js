@@ -7,6 +7,9 @@ function buildState() {
     running:    false,
     timeLeft:   GameConfig.DURATION,
     score:      0,
+    combo:      0,
+    combo_changed: false,
+    combo_animation_timer: 0,
     catches:    0,
 
     duck: {
