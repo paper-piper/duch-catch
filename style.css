@@ -33,6 +33,8 @@ body {
   display: block;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
 }
 
 #game-wrapper img {

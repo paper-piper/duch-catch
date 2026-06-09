@@ -34,10 +34,11 @@ function drawHUD(gs) {
   ctx.font         = '15px PixelFont, monospace';
   ctx.textBaseline = 'middle';
 
+  const sx = Math.round(xCursor);
   ctx.fillStyle = '#000';
-  ctx.fillText('x ' + gs.score, xCursor + 1, 11);
+  ctx.fillText('x ' + gs.score, sx + 1, 11);
   ctx.fillStyle = '#fff';
-  ctx.fillText('x ' + gs.score, xCursor, 10);
+  ctx.fillText('x ' + gs.score, sx,     10);
 
   const secs    = Math.ceil(gs.timeLeft);
   const minutes = Math.floor(secs / 60);
@@ -45,7 +46,7 @@ function drawHUD(gs) {
   const timeStr = minutes + ':' + String(seconds).padStart(2, '0');
 
   const textWidth = ctx.measureText(timeStr).width;
-  let xRight = W - 6 - textWidth;
+  let xRight = Math.round(W - 6 - textWidth);
 
   const CLOCK_ICON_W = 11, CLOCK_ICON_H = 14;
   xRight -= CLOCK_ICON_W + 3;
@@ -55,7 +56,7 @@ function drawHUD(gs) {
   ctx.fillStyle = '#000';
   ctx.fillText(timeStr, xRight + 1, 11);
   ctx.fillStyle = '#fff';
-  ctx.fillText(timeStr, xRight, 10);
+  ctx.fillText(timeStr, xRight,     10);
 }
 
 function draw() {
