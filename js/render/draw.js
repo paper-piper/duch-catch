@@ -9,22 +9,6 @@ function drawImg(img, dx, dy, dw, dh, fallbackColor) {
   }
 }
 
-function drawDuck(duck) {
-  ctx.save();
-  ctx.translate(duck.x, duck.y - DUCK_SPRITE_H / 2);
-  if (duck.facingLeft) ctx.scale(-1, 1);
-
-  if (duck.state === 'eat') {
-    drawImg(images.duckEat, -DUCK_SPRITE_W / 2, 0, DUCK_SPRITE_W, DUCK_SPRITE_H, '#e8a020');
-  } else if (duck.state === 'walk') {
-    const frameImg = [images.duckWalk0, images.duckWalk1, images.duckWalk2, images.duckWalk3][duck.frame % WALK_FRAMES];
-    drawImg(frameImg, -DUCK_SPRITE_W / 2, 0, DUCK_SPRITE_W, DUCK_SPRITE_H, '#f5c518');
-  } else {
-    drawImg(images.duckIdle, -DUCK_SPRITE_W / 2, 0, DUCK_SPRITE_W, DUCK_SPRITE_H, '#f5c518');
-  }
-
-  ctx.restore();
-}
 
 function drawHUD(gs) {
   const BREAD_ICON_W = 14, BREAD_ICON_H = 14;
@@ -64,15 +48,9 @@ function draw() {
 
   drawImg(images.background, 0, 0, W, H, '#87ceeb');
 
-  for (const b of gs.breads) {
-    ctx.save();
-    ctx.translate(b.x, b.y);
-    ctx.rotate(b.rotation * Math.PI / 180);
-    drawImg(images.breadIcon, -BREAD_SPRITE_W / 2, -BREAD_SPRITE_H / 2, BREAD_SPRITE_W, BREAD_SPRITE_H, '#c8860a');
-    ctx.restore();
-  }
+  for (const b of gs.breads) b.draw();
 
-  drawDuck(gs.duck);
+  gs.duck.draw();
 
   ctx.fillStyle = 'rgba(0,0,0,0.45)';
   ctx.fillRect(0, 0, W, 20);

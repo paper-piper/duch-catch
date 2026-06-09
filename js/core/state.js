@@ -9,14 +9,7 @@ function buildState() {
     score:      0,
     catches:    0,
 
-    duck: {
-      x:          W / 2,
-      y:          DUCK_Y,
-      frame:      0,
-      frameTimer: 0,
-      state:      'idle',
-      facingLeft: false,
-    },
+    duck: new Duck(),
 
     breads:     [],
     spawnTimer: 0,

@@ -4,8 +4,9 @@
     {
       "name": "duck-game",
       "runtimeExecutable": "/usr/bin/python3",
-      "runtimeArgs": ["/Users/yoyo/Documents/duck-catch/serve.py"],
-      "port": 8742
+      "runtimeArgs": ["-m", "http.server", "8742"],
+      "port": 8742,
+      "cwd": "/Users/yoyo/Documents/duck-catch"
     }
   ]
 }
