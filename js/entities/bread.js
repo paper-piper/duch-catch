@@ -35,8 +35,15 @@ function HandleBreadsCollisions(dt) {
     const breadLeft   = b.x - BreadConfig.W / 2;
     const breadRight  = b.x + BreadConfig.W / 2;
 
-    const caught = breadRight > duckLeft  && breadLeft < duckRight &&
-                   breadBottom >= duckTop && breadBottom <= gameState.duck.y + 4;
+    const breadTop   = b.y - BreadConfig.H / 2;
+    const duckBottom = gameState.duck.y;
+
+    const caughtTop  = breadRight > duckLeft && breadLeft < duckRight &&
+                       breadBottom >= duckTop && breadBottom <= duckBottom + 4;
+    const caughtSide = breadBottom > duckTop && breadTop < duckBottom &&
+                       ((breadRight >= duckLeft && breadRight <= duckLeft + 4) ||
+                        (breadLeft  <= duckRight && breadLeft >= duckRight - 4));
+    const caught = caughtTop || caughtSide;
 
     if (caught) {
       gameState.score++;

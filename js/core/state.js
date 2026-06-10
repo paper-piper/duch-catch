@@ -4,15 +4,16 @@ let gameState = {};
 
 function buildState() {
   return {
-    running:    false,
-    timeLeft:   GameConfig.DURATION,
-    score:      0,
-    combo:      0,
+    running: false,
+    timeLeft: GameConfig.DURATION,
+    score: 0,
+    combo: 0,
     combo_changed: false,
     combo_animation_timer: 0,
     combo_x: 0,
     combo_y: 0,
     combo_rotation: 0,
+    combo_str: 0,
     catches:    0,
 
     duck: {
