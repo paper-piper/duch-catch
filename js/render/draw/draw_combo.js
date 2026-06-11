@@ -1,32 +1,35 @@
 'use strict';
 
-function drawCombo(dt) {
-    // Dont draw anything if combo hasn't changed or timer animation ran out
-    if (! gameState.combo_changed && gameState.combo_animation_timer <= 0 ) {
+function updateCombo(dt) {
+    if (!gameState.combo_changed && gameState.combo_animation_timer <= 0) {
         return;
     }
     if (gameState.combo === 1) {
-        return; // No need to show "Combo x1"
+        return;
     }
-    
+
     if (gameState.combo_changed) {
-        initComboProperties()
-    }
-    else {
+        initComboProperties();
+    } else {
         gameState.combo_animation_timer -= dt;
     }
-    
-    if (gameState.combo_animation_timer > 0) {
+}
 
-        canvas2d.save();
-        canvas2d.translate(gameState.combo_x, gameState.combo_y);  
-        canvas2d.rotate(gameState.combo_rotation * Math.PI / 180);    
-        canvas2d.font = 'bold 16px Arial';
-          canvas2d.fillStyle = '#f00';
-        canvas2d.fillText(gameState.combo_str, 0, 0); // draw at origin
-        canvas2d.restore();
+function drawCombo() {
+    if (gameState.combo_animation_timer <= 0) {
+        return;
     }
-    
+    if (gameState.combo === 1) {
+        return;
+    }
+
+    canvas2d.save();
+    canvas2d.translate(gameState.combo_x, gameState.combo_y);
+    canvas2d.rotate(gameState.combo_rotation * Math.PI / 180);
+    canvas2d.font = 'bold 16px Arial';
+    canvas2d.fillStyle = '#f00';
+    canvas2d.fillText(gameState.combo_str, 0, 0);
+    canvas2d.restore();
 }
 
 function initComboProperties(){

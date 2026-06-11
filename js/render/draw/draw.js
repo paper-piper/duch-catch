@@ -1,13 +1,14 @@
 'use strict';
 
-function draw(dt) {
+function draw() {
   drawImg(images.background, 0, 0, CanvasConfig.W, CanvasConfig.H, '#87ceeb');
   drawBreads();
+  drawParticles();
   drawDuck();
   canvas2d.fillStyle = 'rgba(0,0,0,0.45)';
   canvas2d.fillRect(0, 0, CanvasConfig.W, 20);
   drawHUD();
-  drawCombo(dt);
+  drawCombo();
 }
 
 function drawImg(img, dx, dy, dw, dh, fallbackColor) {

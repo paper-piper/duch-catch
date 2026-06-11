@@ -26,6 +26,7 @@ function buildState() {
     },
 
     breads:     [],
+    particles:   [],
     spawnTimer: 0,
 
     keys: {

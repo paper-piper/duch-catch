@@ -6,6 +6,7 @@ function spawnBread(speed) {
     y:        -BreadConfig.SPRITE_H / 2,
     rotation: 0,
     speed,
+    type: Math.random() < 0.1 ? BreadConfig.BREAD_ROTTEN_TYPE : BreadConfig.BREAD_NORMAL_TYPE
   });
 }
 
@@ -23,7 +24,7 @@ function tickBreads(dt) {
     }
 }
 
-function HandleBreadsCollisions(dt) {
+function CheckBreadCollisions(dt) {
   const duckLeft  = gameState.duck.x - DuckConfig.W / 2;
   const duckRight = gameState.duck.x + DuckConfig.W / 2;
   const duckTop   = gameState.duck.y - DuckConfig.H;
@@ -46,24 +47,47 @@ function HandleBreadsCollisions(dt) {
     const caught = caughtTop || caughtSide;
 
     if (caught) {
-      gameState.score++;
-      gameState.catches++;
-      gameState.combo++;
-      gameState.combo_changed = true;
+      gameState.particles.push(...spawnParticlesBurst(b.x, b.y, b.type));
+
+      if (b.type === BreadConfig.BREAD_NORMAL_TYPE) {
+        HandleBreadCollided();
+      } else {
+        HandleRottenBreadCollided();
+      }
       if (gameState.catches >= GameConfig.WIN_CATCHES) { 
         endGame('win'); return; 
       }
     } 
     
     else if (b.y - BreadConfig.H / 2 > CanvasConfig.H) {
+      HandleBreadMissed(b.type);
+      }
+    else {
+      surviving.push(b);
+    }
+  }
+  gameState.breads = surviving;
+}
+
+function HandleBreadCollided() {
+      gameState.score++;
+      gameState.catches++;
+      gameState.combo++;
+      gameState.combo_changed = true;
+}
+
+function HandleRottenBreadCollided() {
+      gameState.score--;
+      gameState.catches--;
+      gameState.combo = 0;
+      gameState.combo_changed = true;
+}
+
+function HandleBreadMissed(breadType) {
+      if (breadType === BreadConfig.BREAD_ROTTEN_TYPE) return;
       gameState.score--;
       if (gameState.combo > 0) {
         gameState.combo_changed = true;
         gameState.combo = 0;
       }
-    } else {
-      surviving.push(b);
-    }
-  }
-  gameState.breads = surviving;
 }

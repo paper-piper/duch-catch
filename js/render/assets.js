@@ -9,6 +9,8 @@ const ASSETS = {
   duckWalk2:  'assets/duck/walk/frame_002.png',
   duckWalk3:  'assets/duck/walk/frame_003.png',
   breadIcon:  'assets/icons/bread.png',
+  rottenBread: 'assets/bread/rotten_bread.png',
+  fallingBread: 'assets/bread/falling_bread.png',
   timerIcon:  'assets/icons/clock.png',
 };
 

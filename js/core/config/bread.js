@@ -9,4 +9,6 @@ class BreadConfig {
   static SPRITE_W   = 28;
   static SPRITE_H   = 28;
   static ROT_SPEED  = 1.5;
+  static BREAD_NORMAL_TYPE = "normal";
+  static BREAD_ROTTEN_TYPE = "rotten";
 }
